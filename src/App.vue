@@ -1,8 +1,8 @@
 <template>
     <main id="app">
-
-        <Header/>
-
+        <header>
+            <strong>Welcome to your dashboard!</strong>
+        </header>
         <section id="container">
             <section id="main">
                 <div class="content">
@@ -14,13 +14,20 @@
                 </div>
                 <div class="controls">
                     <button id="profile-button" class="pill active">Profile</button>
-                    <button id="courses-button" class="pill">Courses</button>
+                    <button id="courses-button" class="pill" v-on:click="coursesshow" v-bind:key="course">Courses</button>
                 </div>
             </section>
         </section>
-
-        <Footer/>
-
+        <footer>
+            <ul class="links">
+                <li>
+                    <a href="https://ois2.ut.ee/" target="_blank">OIS</a>
+                </li>
+                <li>
+                    <a href="https://courses.cs.ut.ee/" target="_blank">Courses</a>
+                </li>
+            </ul>
+        </footer>
     </main>
 </template>
 
@@ -28,12 +35,16 @@
 
     import Profile from "./components/Profile";
     import Courses from "./components/Courses";
-    import Footer from "./components/Footer";
-    import Header from "./components/Header";
 
     export default {
         name: 'app',
-        components: {Header, Footer, Courses, Profile}
+        components: {Courses, Profile},
+        methods: {
+            coursesshow: function() {
+                Courses.coursesV = true;
+                ("#courses-container").addClass(".active");
+            }
+        }
     }
 </script>
 
