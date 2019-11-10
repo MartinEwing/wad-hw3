@@ -7,14 +7,14 @@
             <section id="main">
                 <div class="content">
 
-                    <Profile/>
+                    <Profile v-show="!this.coursesV"/>
 
-                    <Courses/>
+                    <Courses v-show="this.coursesV"/>
 
                 </div>
                 <div class="controls">
-                    <button id="profile-button" class="pill active">Profile</button>
-                    <button id="courses-button" class="pill" v-on:click="coursesshow" v-bind:key="course">Courses</button>
+                    <button id="profile-button" class="pill" v-on:click="coursesV = false">Profile</button>
+                    <button id="courses-button" class="pill" v-on:click="coursesV = true" v-bind:key="course" v-class="{active: coursesV}">Courses</button>
                 </div>
             </section>
         </section>
@@ -39,11 +39,12 @@
     export default {
         name: 'app',
         components: {Courses, Profile},
-        methods: {
-            coursesshow: function() {
-                Courses.coursesV = true;
-                ("#courses-container").addClass(".active");
+        data() {
+            return {
+                coursesV: false,
             }
+        },
+        methods: {
         }
     }
 </script>

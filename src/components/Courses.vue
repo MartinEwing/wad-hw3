@@ -1,5 +1,5 @@
 <template>
-    <div id="courses-container" class="tab" :class="{active: coursesV}">
+    <div id="courses-container" class="tab active">
         <h1 class="title">Courses</h1>
         <table id="courses">
             <thead>
@@ -40,8 +40,8 @@
         <br>
         <br>
         <div>
-            <button id="add-course-button" class="blue-button">+</button>
-            <span id="add-course">
+            <button id="add-course-button" class="blue-button" v-on:click="input = !input">+</button>
+            <span id="add-course" v-show="this.input" style="display: inline">
                                 <input class="input" type="text" placeholder="Course title" id="title">
                                 <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
                                 <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
@@ -54,7 +54,14 @@
 
 <script>
     export default {
-        name: "Courses"
+        name: "Courses",
+        data() {
+            return {
+                input: false
+            }
+        },
+        methods:{
+        }
     }
 </script>
 
