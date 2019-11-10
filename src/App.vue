@@ -1,33 +1,27 @@
 <template>
     <main id="app">
-        <header>
-            <strong>Welcome to your dashboard!</strong>
-        </header>
+
+        <Header/>
+
         <section id="container">
             <section id="main">
                 <div class="content">
 
                     <Profile v-show="!this.coursesV"/>
 
-                    <Courses v-show="this.coursesV"/>
+                    <Courses v-show="this.coursesV" :courses="courseList"/>
 
                 </div>
                 <div class="controls">
                     <button id="profile-button" class="pill" v-on:click="coursesV = false">Profile</button>
-                    <button id="courses-button" class="pill" v-on:click="coursesV = true" v-bind:key="course" v-class="{active: coursesV}">Courses</button>
+                    <button id="courses-button" class="pill" v-on:click="coursesV = true">Courses
+                    </button>
                 </div>
             </section>
         </section>
-        <footer>
-            <ul class="links">
-                <li>
-                    <a href="https://ois2.ut.ee/" target="_blank">OIS</a>
-                </li>
-                <li>
-                    <a href="https://courses.cs.ut.ee/" target="_blank">Courses</a>
-                </li>
-            </ul>
-        </footer>
+
+        <Footer/>
+
     </main>
 </template>
 
@@ -35,16 +29,25 @@
 
     import Profile from "./components/Profile";
     import Courses from "./components/Courses";
+    import Footer from "./components/Footer";
+    import Header from "./components/Header";
+    import Course from "./Course";
+
 
     export default {
         name: 'app',
-        components: {Courses, Profile},
-        data() {
+
+        components: {Header, Footer, Courses, Profile},
+
+        data: () => {
             return {
                 coursesV: false,
+                courseList: [new Course("Agile software development", 1, 82),
+                    new Course("System modeling", 1, 85),
+                    new Course("Object-oriented programming", 2, 99),
+                    new Course("Estonian language Level A2", 2, 65),
+                ]
             }
-        },
-        methods: {
         }
     }
 </script>
@@ -118,7 +121,6 @@
         background-color: #ffffff;
         margin: 0 auto;
     }
-
 
 
     .content {

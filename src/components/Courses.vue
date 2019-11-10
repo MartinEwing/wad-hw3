@@ -11,30 +11,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Agile software development</td>
-                <td>1</td>
-                <td>82</td>
+            <tr v-for="(item, index) in courses" :key="index">
+                <td>{{index + 1}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.semester}}</td>
+                <td>{{item.grade}}</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>System modeling</td>
-                <td>1</td>
-                <td>85</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Object-oriented programming</td>
-                <td>2</td>
-                <td>99</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Estonian language Level A2</td>
-                <td>2</td>
-                <td>65</td>
-            </tr>
+
             </tbody>
         </table>
         <br>
@@ -60,8 +43,12 @@
                 input: false
             }
         },
-        methods:{
+        methods: {},
+
+        props: {
+            courses: Array
         }
+
     }
 </script>
 
