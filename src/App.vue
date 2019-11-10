@@ -1,8 +1,8 @@
 <template>
     <main id="app">
-        <header>
-            <strong>Welcome to your dashboard!</strong>
-        </header>
+
+        <Header/>
+
         <section id="container">
             <section id="main">
                 <div class="content">
@@ -18,16 +18,9 @@
                 </div>
             </section>
         </section>
-        <footer>
-            <ul class="links">
-                <li>
-                    <a href="https://ois2.ut.ee/" target="_blank">OIS</a>
-                </li>
-                <li>
-                    <a href="https://courses.cs.ut.ee/" target="_blank">Courses</a>
-                </li>
-            </ul>
-        </footer>
+
+        <Footer/>
+
     </main>
 </template>
 
@@ -35,10 +28,12 @@
 
     import Profile from "./components/Profile";
     import Courses from "./components/Courses";
+    import Footer from "./components/Footer";
+    import Header from "./components/Header";
 
     export default {
         name: 'app',
-        components: {Courses, Profile}
+        components: {Header, Footer, Courses, Profile}
     }
 </script>
 
