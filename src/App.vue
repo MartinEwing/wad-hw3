@@ -13,8 +13,8 @@
 
                 </div>
                 <div class="controls">
-                    <button id="profile-button" class="pill" v-on:click="coursesV = false">Profile</button>
-                    <button id="courses-button" class="pill" v-on:click="coursesV = true">Courses
+                    <button id="profile-button" class="pill" v-on:click="coursesV = false" :class="{active : !coursesV }">Profile</button>
+                    <button id="courses-button" class="pill" v-on:click="coursesV = true" :class="{active : coursesV }">Courses
                     </button>
                 </div>
             </section>
