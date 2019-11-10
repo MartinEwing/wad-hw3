@@ -25,25 +25,45 @@
         <div>
             <button id="add-course-button" class="blue-button" v-on:click="input = !input">+</button>
             <span id="add-course" v-show="this.input" style="display: inline">
-                                <input class="input" type="text" placeholder="Course title" id="title">
-                                <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
-                                <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
-                                <button class="green-button" id="save-course">Save</button>
-                                <button class="grey-button" id="cancel-course">Cancel</button>
+                                <input class="input" type="text" placeholder="Course title" id="title" v-model="title">
+                                <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester" v-model="semester">
+                                <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade" v-model="grade">
+                                <button class="green-button" id="save-course" @click="addCourse">Save</button>
+                                <button class="grey-button" id="cancel-course" @click="clear">Cancel</button>
                             </span>
         </div>
     </div>
 </template>
 
 <script>
+    import Course from "../Course";
+
     export default {
         name: "Courses",
         data() {
             return {
-                input: false
+                input: false,
+                title: "",
+                semester: "",
+                grade: ""
             }
         },
-        methods: {},
+        methods: {
+            addCourse: function() {
+                if (this.title.length !== 0 && this.semester.length !== 0 && this.grade.length !== 0) {
+                    this.courses.push(new Course(this.title, this.semester, this.grade));
+                    this.title = "";
+                    this.semester = "";
+                    this.grade = "";
+                }
+
+            },
+            clear: function () {
+                this.title = "";
+                this.semester = "";
+                this.grade = "";
+            }
+        },
 
         props: {
             courses: Array
