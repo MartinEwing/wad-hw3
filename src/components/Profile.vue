@@ -6,13 +6,13 @@
             </div>
             <div class="info">
                 <ul>
-                    <li id="name">John Doe</li>
-                    <li id="birthdate">11/10/1990</li>
-                    <li id="faculty">Software Engineering</li>
+                    <li id="name">{{user.firstname}} {{user.lastname}}</li>
+                    <li id="birthdate">{{user.birthdate}}</li>
+                    <li id="faculty">{{user.faculty}}</li>
                 </ul>
             </div>
             <div id="gpa">
-                <strong>2.75</strong>
+                <strong>{{s}}</strong>
             </div>
             <div class="clear-fix"></div>
         </div>
@@ -20,9 +20,50 @@
 </template>
 
 <script>
+    import User from "../User";
+
     export default {
-        name: "Profile"
+        name: "Profile",
+        props: {
+            user: User,
+            courses: Array
+        },
+
+        methods: {
+
+            calGrade: function (grade) {
+                if (grade > 90) {
+                    return 4;
+                } else if (grade > 80) {
+                    return 3;
+                } else if (grade > 70) {
+                    return 2;
+                } else if (grade > 60) {
+                    return 1;
+                } else if (grade > 50) {
+                    return 0.5;
+                } else {
+                    return 0;
+                }
+            },
+
+            calc: function () {
+                let i;
+                let sum = 0;
+                for (i = 0; i < this.courses.length; i++) {
+                    sum += this.calGrade(parseInt(this.courses[i].grade));
+                }
+                return Math.round((sum / this.courses.length) * 100) / 100
+            },
+        },
+
+        computed: {
+            s: function () {
+                return this.calc();
+            }
+        }
     }
+
 </script>
 
 <style scoped>

@@ -7,7 +7,7 @@
             <section id="main">
                 <div class="content">
 
-                    <Profile v-show="!this.coursesV"/>
+                    <Profile v-show="!this.coursesV" :user="users" :courses="courseList"/>
 
                     <Courses v-show="this.coursesV" :courses="courseList"/>
 
@@ -32,6 +32,7 @@
     import Footer from "./components/Footer";
     import Header from "./components/Header";
     import Course from "./Course";
+    import User from "./User";
 
 
     export default {
@@ -46,9 +47,11 @@
                     new Course("System modeling", 1, 85),
                     new Course("Object-oriented programming", 2, 99),
                     new Course("Estonian language Level A2", 2, 65),
-                ]
+                ],
+                users: new User("John", "Doe", "11/10/1990", "Software Engineering", "s")
             }
-        }
+        },
+
     }
 </script>
 

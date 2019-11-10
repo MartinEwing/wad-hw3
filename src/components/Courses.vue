@@ -48,6 +48,7 @@
                 grade: ""
             }
         },
+
         methods: {
             addCourse: function() {
                 if (this.title.length !== 0 && this.semester.length !== 0 && this.grade.length !== 0) {
@@ -63,6 +64,7 @@
                 this.semester = "";
                 this.grade = "";
             }
+
         },
 
         props: {
